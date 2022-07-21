@@ -1,34 +1,31 @@
 
 <section class="content">
     <div class="content-block">
-      
+      <form class="example-form" [formGroup]="busquedaDinamica" (submit)="buscarRegistro()">
         <div class="row" style="padding-top:20px ;">
-
-          <form class="form-group row" [formGroup]="busquedaDinamica" (submit)="buscarRegistro()">
-  
           
-          <div class="col">
-            <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="floatingInput" placeholder=" Correo"  
-              formControlName="correo" name="correo" style="border-radius:8px;">
-              <label for="floatingInput">Correo</label>
-            </div>
-          </div> 
-          <div class="col">
-            <div class="form-floating">
-              <input type="text" class="form-control" id="floatingInput" placeholder="Rol" 
-              formControlName="rol" name="rol" style="border-radius:8px;">
-              <label for="floatingInput">Rol</label>
-            </div>
-           </div> 
-          
-          <div class="col">
-            <div class="col">
-              <button type="submit" class="btn btn-primary"
-               ><mat-icon class="col-white"
-                >search</mat-icon></button> 
-            </div>
+              <div class="col">
+                
+                  <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Correo</mat-label>
+                    <input matInput placeholder="" formControlName="correo" name="correo">
+                  </mat-form-field>
+                
+              </div> 
+              <div class="col">
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Rol</mat-label>
+                  <input matInput placeholder="" formControlName="rol" name="rol">
+                </mat-form-field>
+              </div>
+              <div class="col">
+                
+                  <button type="submit" class="btn btn-primary"
+                  ><mat-icon class="col-white">
+                    search
+                  </mat-icon></button> 
          
+              </div>
           </div>
           <div class="row">
            
@@ -41,11 +38,9 @@
             <div class="col" style="padding-bottom: 30px;">
               <button type="button" class="btn btn-outline-primary"  (click)="consultarTodos()">Mostrar Todos</button>
             </div>
-            
-          </div>
-        </form>
-  
+          
         </div>
+      </form>
   
         <div class="mat-elevation-z8">
           <mat-table #table [dataSource]="dato" matSort>
@@ -73,14 +68,16 @@
               <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
               <mat-cell *matCellDef="let row"> 
           
-                <button type="button" id="btnAccion" class="btn btn-outline-success"(click)="nuevoRegistro()"> <mat-icon id="icono">create</mat-icon>
+                <button type="button" id="btnAccion" class="btn btn-outline-success"(click)="nuevoRegistro()"> 
+                  <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
                 </button>	
              </mat-cell>
             </ng-container>
             <ng-container matColumnDef="eliminar">
               <mat-header-cell *matHeaderCellDef></mat-header-cell>
               <mat-cell *matCellDef="let row"> 
-                <button type="button" id="btnAccion" class="btn btn-outline-danger"(click)="eliminarRegistro(dato.id)"><mat-icon id="icono">delete_outline</mat-icon>
+                <button type="button" id="btnAccion" class="btn btn-outline-danger"(click)="eliminarRegistro(dato.id)">
+                  <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons> 
                 </button>
             
           </mat-cell>
