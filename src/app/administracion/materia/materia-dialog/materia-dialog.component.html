@@ -1,0 +1,59 @@
+<div style="text-align: center;">
+    <h1>Administración Materias</h1>
+</div>
+
+<mat-dialog-content>
+    <div class="row">
+      <div class="col">
+        <mat-form-field style="width:235px;" appearance="outline">
+          <mat-label>Clave</mat-label>
+          <input [disabled]="isClicked" [maxLength]="12" required matInput placeholder="Clave" [(ngModel)]="materia.clave">
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field style="width:235px;" appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input [disabled]="isClicked" [maxLength]="30" required matInput placeholder="Nombre" [(ngModel)]="materia.nombre">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <mat-form-field style="width:235px;" appearance="outline">
+          <mat-label>Estatus</mat-label>
+          <mat-select [disabled]="isClicked" [(ngModel)]="materia.estatus">
+            <mat-option [value]="1">Activo</mat-option>
+            <mat-option [value]="0">Inactivo</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field style="width:235px;"  appearance="outline">
+          <mat-label>Ciclo</mat-label>
+          <mat-select [disabled]="isClicked" [(ngModel)]="materia.ciclo">
+            <mat-option *ngFor="let ciclo of ciclo; let i=index" [value]="ciclo.id">
+             {{i+1}}:  {{ciclo.nombre}}
+            </mat-option> 
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <button [disabled]="materia.estatus==null
+        || !materia.nombre
+        || !materia.clave
+        || !materia.ciclo
+        || isClicked" mat-raised-button color="primary" (click)="nuevoMateria()">
+          Aceptar
+        </button>
+      </div>
+      <div class="col">
+        <button mat-raised-button color="warn" (click)="cerrar()">
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </mat-dialog-content>
+

@@ -1,0 +1,104 @@
+<div style="text-align: center;">
+    <h1>Administración Ciclo</h1>
+</div>
+
+
+
+<form class="formularioCiclo">
+
+    <div class="row" style="width: 600px;">
+
+        <div class="col" style="padding-bottom: 10px;">
+            <div class="form-floating mb-3">
+
+                <input type="text" class="form-control" [(ngModel)]="ciclo.clave" name="clave" maxlength="12" placeholder="Clave" required/>
+                <label for="clave">Clave</label>
+
+            </div>
+
+            <div class="form-floating">
+                    
+                <input type="text" class="form-control" [(ngModel)]="ciclo.nombre" name="nombre" placeholder="Nombre" required/>
+                <label for="nombre">Nombre</label>
+
+            </div>
+
+            <div class="form-class">
+                <label for="nombre" class="col-form-label col-sm-2">Estatus</label>
+                <select class="form-select"  [(ngModel)]="ciclo.estatus" name="estatus" required>
+                    <option selected> </option>
+                    <option value="0">Inactivo</option>
+                    <option value="1">Activo</option>
+                </select>
+            </div>
+
+            <div class="form-class" style="padding-top:40px;">
+                <button
+                [disabled] = "!ciclo.clave
+                || !ciclo.nombre
+                || !ciclo.estatus
+                || !ciclo.periodo
+                || isClicked" class="btn btn-success" role="button" (click)="nuevoCiclo()" *ngIf="!ciclo.id else elseBlock">Guardar</button>
+
+                <ng-template #elseBlock> <button  class="btn btn-success" role="button" (click)="nuevoCiclo()">Aceptar</button></ng-template>
+            </div>
+            
+        </div>
+
+
+        <div class="col">
+
+            <div class="form-floating">
+                
+                <input type="text" class="form-control" [(ngModel)]="ciclo.periodo" name="periodo" required/>
+                <label for="periodo">Periodo</label>
+                
+            </div>
+
+            <div form-group row>
+
+                <label for="fechaInicio" class="col-form-label col-sm-4">Fecha Inicio</label>
+
+                <mat-datepicker-toggle matSuffix [for]="miDataPicker"></mat-datepicker-toggle>
+
+                <mat-datepicker #miDataPicker></mat-datepicker>
+        
+                    <div class="col-sm-6">
+        
+                        <input matInput [matDatepicker]="miDataPicker" class="form-control" [(ngModel)]="ciclo.fechaInicio"
+                        name="fechaInicio" style="display: inline; width: 200px;" required/>
+                    
+                    </div>
+
+            </div>
+            
+            <div form-group row >
+
+                <label for="fechaFin" class="col-form-label col-sm-3">Fecha Fin</label>
+
+                <mat-datepicker-toggle matSuffix [for]="miDataPicker2"></mat-datepicker-toggle>
+
+                <mat-datepicker #miDataPicker2></mat-datepicker>
+
+                    <div class="col-sm-6">
+                        <input matInput [matDatepicker]="miDataPicker2" class="form-control" [(ngModel)]="ciclo.fechaFin"
+                        name="fechaFin"  style="display: inline; width: 200px;" />   
+                    </div>
+
+            </div>
+
+            <div form-group row style="padding-top: 10px;">
+
+                <div class="col-sm-6">
+
+                </div>
+            </div>
+
+            <div class="form-class" style="padding-top:20px;">
+                <button type="button" (click)="cerrar()" class="btn btn-danger">Cancelar</button>
+            </div>
+
+        </div>
+</div>
+</form>
+

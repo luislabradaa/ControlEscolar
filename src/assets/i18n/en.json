@@ -1,0 +1,22 @@
+{
+  "MENUITEMS": {
+    "MAIN": {
+      "TEXT": "Main"
+    },
+    "DASHBOARD": {
+      "TEXT": "Dashboard",
+      "LIST": {
+        "DASHBOARD1": "Dashboard 1",
+        "DASHBOARD2": "Dashboard 2",
+        "GRUPO": "Administracion de Grupos"
+      }
+    },
+    "EMPLOYEE": {    
+      "DASHBOARD": "Dashboard"
+  },
+    "CLIENT": {    
+      "TEXT": "Client",
+      "DASHBOARD": "Dashboard"
+    }
+  }
+}

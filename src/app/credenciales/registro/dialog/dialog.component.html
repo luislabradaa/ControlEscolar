@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-4"></div>
+  <div class="col-4"></div>
+  <div class="col-4" id="btnSalir">
+    <button type="button" class="btn-close"  (click)="cerrar()"></button>
+  </div>
+  
+</div>
+<div style="text-align: center;">
+    <h1>Administración Usuarios</h1>
+</div>
+<mat-dialog-content>
+    <div class="row">
+      <div class="col">
+        <mat-form-field style="width:235px;" appearance="outline">
+          <mat-label>Correo</mat-label>
+          <input [disabled]="isClicked" [maxLength]="30" required matInput placeholder="Correo" [(ngModel)]="login.correo">
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field style="width:235px;" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input [disabled]="isClicked" [maxLength]="10" required matInput placeholder="Password" [(ngModel)]="login.password">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <mat-form-field style="width:235px;" appearance="outline">
+          <mat-label>Rol</mat-label>
+          <mat-select [disabled]="isClicked" [(ngModel)]="login.rol">
+            <mat-option [value]="1">Administrador</mat-option>
+            <mat-option [value]="2">Profesor</mat-option>
+            <mat-option [value]="3">Alumno</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <button [disabled]="!login.correo
+        || !login.password
+        || isClicked" class="btn btn-primary" role="button" (click)="aceptar()" *ngIf="!login.id else elseBlock">
+          Guardar
+        </button>
+        <ng-template #elseBlock> <button  class="btn btn-primary" role="button" (click)="aceptar()">Aceptar</button></ng-template>
+           
+      </div>
+    </div>
+  </mat-dialog-content>

@@ -1,0 +1,102 @@
+
+<section class="content">
+    <div class="content-block">
+      
+        <div class="row" style="padding-top:20px ;">
+
+          <form class="form-group row" [formGroup]="busquedaDinamica" (submit)="buscarRegistro()">
+  
+          
+          <div class="col">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="floatingInput" placeholder=" Correo"  
+              formControlName="correo" name="correo" style="border-radius:8px;">
+              <label for="floatingInput">Correo</label>
+            </div>
+          </div> 
+          <div class="col">
+            <div class="form-floating">
+              <input type="text" class="form-control" id="floatingInput" placeholder="Rol" 
+              formControlName="rol" name="rol" style="border-radius:8px;">
+              <label for="floatingInput">Rol</label>
+            </div>
+           </div> 
+          
+          <div class="col">
+            <div class="col">
+              <button type="submit" class="btn btn-primary"
+               ><mat-icon class="col-white"
+                >search</mat-icon></button> 
+            </div>
+         
+          </div>
+          <div class="row">
+           
+            <div class="col" style="padding-bottom: 30px;">
+              <button type="button" mat-mini-fab color="primary" (click)="nuevoRegistro()" >
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+
+            <div class="col" style="padding-bottom: 30px;">
+              <button type="button" class="btn btn-outline-primary"  (click)="consultarTodos()">Mostrar Todos</button>
+            </div>
+            
+          </div>
+        </form>
+  
+        </div>
+  
+        <div class="mat-elevation-z8">
+          <mat-table #table [dataSource]="dato" matSort>
+        
+           
+            <ng-container matColumnDef="correo">
+              <mat-header-cell *matHeaderCellDef> Correo </mat-header-cell>
+              <mat-cell *matCellDef="let dato"> {{dato.correo}} </mat-cell>
+            </ng-container>
+        
+            
+            <ng-container matColumnDef="password">
+              <mat-header-cell *matHeaderCellDef> Contraseña </mat-header-cell>
+              <mat-cell *matCellDef="let dato"> {{dato.password}} </mat-cell>
+            </ng-container>
+        
+            
+            <ng-container matColumnDef="rol">
+              <mat-header-cell *matHeaderCellDef> Rol </mat-header-cell>
+              <mat-cell *matCellDef="let dato"> {{dato.rol}} </mat-cell>
+            </ng-container>
+        
+            
+            <ng-container matColumnDef="editar">
+              <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+              <mat-cell *matCellDef="let row"> 
+          
+                <button type="button" id="btnAccion" class="btn btn-outline-success"(click)="nuevoRegistro()"> <mat-icon id="icono">create</mat-icon>
+                </button>	
+             </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="eliminar">
+              <mat-header-cell *matHeaderCellDef></mat-header-cell>
+              <mat-cell *matCellDef="let row"> 
+                <button type="button" id="btnAccion" class="btn btn-outline-danger"(click)="eliminarRegistro(dato.id)"><mat-icon id="icono">delete_outline</mat-icon>
+                </button>
+            
+          </mat-cell>
+            </ng-container>
+        
+            <mat-header-row *matHeaderRowDef="columnas"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: columnas;"></mat-row>
+          </mat-table>
+        
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                         showFirstLastButtons 
+                         aria-label="Select page">
+          </mat-paginator>
+        
+          <mat-progress-bar mode="indeterminate" *ngIf="statusBarra"></mat-progress-bar>
+        </div>
+  
+    </div>
+  </section>
