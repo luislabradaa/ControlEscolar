@@ -28,7 +28,7 @@ export class LoginService{
 
     }
     //Guarda un nuevo registro
-    nuevoRegistro(login:Login):Observable<Response<Login>>{
+    nuevoRegistro(login:LoginRequest):Observable<Response<Login>>{
 
         let url="http://localhost:8081/login/guardarLogin";
         return this.http.post<Response<Login>>(url,login );
@@ -41,7 +41,7 @@ export class LoginService{
       }
 
     //Modifica un registro existente
-    actualizarRegistro(login:Login):Observable<Response<number>>{
+    actualizarRegistro(login:LoginRequest):Observable<Response<number>>{
 
       let url = "http://localhost:8081/login/actualizarLogin";
       return this.http.put<Response<number>>(url,login);

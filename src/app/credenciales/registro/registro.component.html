@@ -10,14 +10,22 @@
           <div class="col-5">
             <mat-form-field appearance="fill" style="width: 400px;">
               <mat-label>Correo</mat-label>
-              <input matInput placeholder="" formControlName="correo" name="correo">
+              <input matInput placeholder="" formControlName="correo" name="correo" maxlength="30">
             </mat-form-field>
           </div>
 
           <div class="col-3">
-            <mat-form-field appearance="fill">
+            <!-- <mat-form-field appearance="fill">
               <mat-label>Rol</mat-label>
               <input matInput placeholder="" formControlName="rol" name="rol">
+            </mat-form-field> -->
+            <mat-form-field style="width:235px;" appearance="fill">
+              <mat-label>Rol</mat-label>
+              <mat-select formControlName="rol" name="rol" >
+                <mat-option [value]="1">Administrador</mat-option>
+                <mat-option [value]="2">Profesor</mat-option>
+                <mat-option [value]="3">Alumno</mat-option>
+              </mat-select>
             </mat-form-field>
 
           </div>
@@ -70,7 +78,7 @@
 
             <ng-container matColumnDef="rol">
               <mat-header-cell *matHeaderCellDef> Rol </mat-header-cell>
-              <mat-cell *matCellDef="let dato"> {{dato.rol}} </mat-cell>
+              <mat-cell *matCellDef="let dato"> {{dato.rol.rol}} </mat-cell>
             </ng-container>
 
 
@@ -78,7 +86,7 @@
               <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
               <mat-cell *matCellDef="let row">
 
-                <button type="button" id="btnAccion" class="btn btn-outline-success" (click)="nuevoRegistro(row)">
+                <button type="button" id="btnAccion" class="btn btn-outline-success" (click)="nuevoRegistro(row,row.rol.id)">
                   <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
                 </button>
               </mat-cell>

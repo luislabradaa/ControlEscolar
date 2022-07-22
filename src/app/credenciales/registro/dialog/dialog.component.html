@@ -15,14 +15,14 @@
 <mat-dialog-content>
   <div class="row">
     <div class="col">
-      <mat-form-field style="width:235px;" appearance="outline">
+      <mat-form-field style="width:235px;" appearance="fill">
         <mat-label>Correo</mat-label>
         <input [disabled]="isClicked" [maxLength]="30" required matInput placeholder="Correo"
           [(ngModel)]="login.correo">
       </mat-form-field>
     </div>
     <div class="col">
-      <mat-form-field style="width:235px;" appearance="outline">
+      <mat-form-field style="width:235px;" appearance="fill">
         <mat-label>Password</mat-label>
         <input [disabled]="isClicked" [maxLength]="10" required matInput placeholder="Password"
           [(ngModel)]="login.password">
@@ -31,7 +31,7 @@
   </div>
   <div class="row">
     <div class="col">
-      <mat-form-field style="width:235px;" appearance="outline">
+      <mat-form-field style="width:235px;" appearance="fill">
         <mat-label>Rol</mat-label>
         <mat-select [disabled]="isClicked" [(ngModel)]="login.rol">
           <mat-option [value]="1">Administrador</mat-option>

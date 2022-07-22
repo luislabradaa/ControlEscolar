@@ -14,14 +14,14 @@ import Swal from 'sweetalert2';
 })
 export class DialogComponent implements OnInit {
 
-  login: Login = new Login();
+  login: LoginRequest = new LoginRequest();
 
 
   constructor(
     private loginService: LoginService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    @Inject(MAT_DIALOG_DATA) private data: Login,
+    @Inject(MAT_DIALOG_DATA) private data: LoginRequest,
     private dialogRef: MatDialogRef<DialogComponent>) { }
 
   dato: any;
@@ -36,13 +36,14 @@ export class DialogComponent implements OnInit {
   }
 
   aceptar() {
+    console.log(this.login);
     if (this.login != null && this.login.id! > 0) {
       console.log(this.login.correo);
       console.log(this.login.rol);
       this.loginService.actualizarRegistro(this.login).subscribe(data => {
 
         Swal.fire('Usuario actualizado', '', 'success');
-
+        this.dialogRef.close(data);
       })
 
     } else {
@@ -50,11 +51,11 @@ export class DialogComponent implements OnInit {
       this.loginService.nuevoRegistro(this.login).subscribe(data => {
 
         Swal.fire('Usuario creado', '', 'success');
-
+        this.dialogRef.close(true);
       })
 
     }
-    this.dialogRef.close();
+    
     this.isClicked = true;
   }
 

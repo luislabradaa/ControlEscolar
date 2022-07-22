@@ -8,6 +8,7 @@ import { MatSort } from '@angular/material/sort';
 import { DialogComponent } from './dialog/dialog.component';
 import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { LoginRequest } from 'src/app/_model/loginRequest';
 
 @Component({
   selector: 'app-registro',
@@ -52,7 +53,9 @@ export class RegistroComponent implements OnInit {
   //Mostrar todos los datos en la tabla
   consultarTodos() {
     this.statusBarra = true;
+    
     this.loginService.consultarTodos().subscribe(data => {
+      console.log(data.list);
       this.dato = new MatTableDataSource(data.list);
       this.dato.paginator = this.paginator;
       this.dato.sort = this.sort;
@@ -99,10 +102,11 @@ export class RegistroComponent implements OnInit {
   }
 
   //Nuevo registro
-  nuevoRegistro(login?: Login) {
+  nuevoRegistro(login?: Login,rol?:number) {
 
-    let nVacio = login != null ? login : new Login();
-    console.log(nVacio);
+    let nVacio = login != null ? login : new LoginRequest();
+    nVacio.rol = rol;
+    console.log(nVacio)
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width = "650px";
     dialogConfig.height = "500px";

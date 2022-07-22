@@ -8,7 +8,7 @@ export class LoginRequest{
     correo:string;
     password:string;
 
-    rol: Rol;
+    rol: number;
     profesor:Profesor;
     alumno:Alumno;
 }
