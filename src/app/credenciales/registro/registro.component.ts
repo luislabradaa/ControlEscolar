@@ -70,6 +70,9 @@ export class RegistroComponent implements OnInit {
     if (this.loginFiltroRequest.correo != null || this.loginFiltroRequest.rol != null) {
       this.statusBarra = true;
       this.loginService.buscarRegistro(this.loginFiltroRequest).subscribe(data => {
+       console.log(data);
+        if(data.message=='Consulta exitosa'){
+      
         if (data.list.length != 0) {
           console.log(data);
           Swal.fire(
@@ -83,11 +86,19 @@ export class RegistroComponent implements OnInit {
             this.dato.sort = this.sort;
           }
 
+        }}else {
+
+          Swal.fire(
+            'Dato no encontrado',
+            ' ',
+            'error'
+          );
+    
         }
         this.statusBarra = false;
       });
 
-    } else {
+    }else {
 
       Swal.fire(
         'Dato no encontrado',
@@ -95,7 +106,7 @@ export class RegistroComponent implements OnInit {
         'error'
       );
 
-    }
+    } 
 
     this.busquedaDinamica.reset();
 
