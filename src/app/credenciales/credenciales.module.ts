@@ -9,6 +9,8 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatSelectModule } from "@angular/material/select";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatTableModule } from "@angular/material/table";
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
 
 @NgModule({
     declarations: [RegistroComponent, DialogComponent],
@@ -21,6 +23,7 @@ import { MatTableModule } from "@angular/material/table";
       MatSelectModule,
       MatTableModule,
       MatPaginatorModule,
+      MatProgressBarModule
      
     ],
   })

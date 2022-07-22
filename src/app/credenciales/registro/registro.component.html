@@ -1,99 +1,111 @@
-
 <section class="content">
-    <div class="content-block">
-      <form class="example-form" [formGroup]="busquedaDinamica" (submit)="buscarRegistro()">
-        <div class="row" style="padding-top:20px ;">
-          
-              <div class="col">
-                
-                  <mat-form-field class="example-full-width" appearance="fill">
-                    <mat-label>Correo</mat-label>
-                    <input matInput placeholder="" formControlName="correo" name="correo">
-                  </mat-form-field>
-                
-              </div> 
-              <div class="col">
-                <mat-form-field class="example-full-width" appearance="fill">
-                  <mat-label>Rol</mat-label>
-                  <input matInput placeholder="" formControlName="rol" name="rol">
-                </mat-form-field>
-              </div>
-              <div class="col">
-                
-                  <button type="submit" class="btn btn-primary"
-                  ><mat-icon class="col-white">
-                    search
-                  </mat-icon></button> 
-         
-              </div>
+  <div class="content-block">
+    <br>
+    <mat-progress-bar mode="indeterminate" *ngIf="statusBarra"></mat-progress-bar>
+    <br>
+    <div class="card" style="height: 140px;">
+      <div class="card-body">
+        <form class="form-group row" [formGroup]="busquedaDinamica" (submit)="buscarRegistro()">
+
+          <div class="col-5">
+            <mat-form-field appearance="fill" style="width: 400px;">
+              <mat-label>Correo</mat-label>
+              <input matInput placeholder="" formControlName="correo" name="correo">
+            </mat-form-field>
           </div>
+
+          <div class="col-3">
+            <mat-form-field appearance="fill">
+              <mat-label>Rol</mat-label>
+              <input matInput placeholder="" formControlName="rol" name="rol">
+            </mat-form-field>
+
+          </div>
+
+          <div class="col-2">
+            <button type="submit" class="btn btn-primary">
+              <mat-icon class="col-white">
+                search
+              </mat-icon>
+            </button>
+          </div>
+
           <div class="row">
-           
             <div class="col" style="padding-bottom: 30px;">
-              <button type="button" mat-mini-fab color="primary" (click)="nuevoRegistro()" >
+              <button type="button" mat-mini-fab color="primary" (click)="nuevoRegistro()">
                 <mat-icon>add</mat-icon>
               </button>
             </div>
 
             <div class="col" style="padding-bottom: 30px;">
-              <button type="button" class="btn btn-outline-primary"  (click)="consultarTodos()">Mostrar Todos</button>
+              <button type="button" class="btn btn-outline-primary" (click)="consultarTodos()">Mostrar
+                Todos</button>
             </div>
-          
-        </div>
-      </form>
-  
+
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+
         <div class="mat-elevation-z8">
           <mat-table #table [dataSource]="dato" matSort>
-        
-           
+
+
             <ng-container matColumnDef="correo">
               <mat-header-cell *matHeaderCellDef> Correo </mat-header-cell>
               <mat-cell *matCellDef="let dato"> {{dato.correo}} </mat-cell>
             </ng-container>
-        
-            
+
+
             <ng-container matColumnDef="password">
               <mat-header-cell *matHeaderCellDef> Contraseña </mat-header-cell>
               <mat-cell *matCellDef="let dato"> {{dato.password}} </mat-cell>
             </ng-container>
-        
-            
+
+
             <ng-container matColumnDef="rol">
               <mat-header-cell *matHeaderCellDef> Rol </mat-header-cell>
               <mat-cell *matCellDef="let dato"> {{dato.rol}} </mat-cell>
             </ng-container>
-        
-            
+
+
             <ng-container matColumnDef="editar">
               <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
-              <mat-cell *matCellDef="let row"> 
-          
-                <button type="button" id="btnAccion" class="btn btn-outline-success"(click)="nuevoRegistro()"> 
+              <mat-cell *matCellDef="let row">
+
+                <button type="button" id="btnAccion" class="btn btn-outline-success" (click)="nuevoRegistro(row)">
                   <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
-                </button>	
-             </mat-cell>
+                </button>
+              </mat-cell>
             </ng-container>
             <ng-container matColumnDef="eliminar">
               <mat-header-cell *matHeaderCellDef></mat-header-cell>
-              <mat-cell *matCellDef="let row"> 
-                <button type="button" id="btnAccion" class="btn btn-outline-danger"(click)="eliminarRegistro(dato.id)">
-                  <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons> 
+              <mat-cell *matCellDef="let row">
+                <button type="button" id="btnAccion" class="btn btn-outline-danger" (click)="eliminarRegistro(row.id)">
+                  <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
                 </button>
-            
-          </mat-cell>
+
+              </mat-cell>
             </ng-container>
-        
+
             <mat-header-row *matHeaderRowDef="columnas"></mat-header-row>
             <mat-row *matRowDef="let row; columns: columnas;"></mat-row>
           </mat-table>
-        
-          <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                         showFirstLastButtons 
-                         aria-label="Select page">
+
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page">
           </mat-paginator>
-        
-          <mat-progress-bar mode="indeterminate" *ngIf="statusBarra"></mat-progress-bar>
+
+
         </div>
-  
+
+      </div>
     </div>
-  </section>
+
+
+  </div>
+</section>

@@ -41,9 +41,9 @@ export class LoginService{
       }
 
     //Modifica un registro existente
-    actualizarRegistro(login:LoginRequest):Observable<Response<number>>{
+    actualizarRegistro(login:Login):Observable<Response<number>>{
 
-      let url = "http://localhost:8081/login/actualizaLogin/";
+      let url = "http://localhost:8081/login/actualizarLogin";
       return this.http.put<Response<number>>(url,login);
   
     }
