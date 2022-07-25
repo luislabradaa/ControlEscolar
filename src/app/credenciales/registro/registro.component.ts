@@ -41,6 +41,7 @@ export class RegistroComponent implements OnInit {
   constructor(private loginService: LoginService,
     private dialog: MatDialog,
     private formBuilder: FormBuilder,
+    // private dataSource: MatTableDataSource<Login>
   ) { }
 
   ngOnInit(): void {
@@ -67,11 +68,7 @@ export class RegistroComponent implements OnInit {
   }
 
   resetTabla(){
-    console.log('Limpiando tabla');
-    this.statusBarra = true;
-    this.limpiarTabla = false;
-    
-    
+    this.dato.data = []; 
   }
 
   //Muestra un solo registro en la tabla
