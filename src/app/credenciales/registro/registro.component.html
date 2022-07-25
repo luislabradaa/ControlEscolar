@@ -1,27 +1,26 @@
 <section class="content">
   <div class="content-block">
     <br>
+    <!-- Barra de carga -->
     <mat-progress-bar mode="indeterminate" *ngIf="statusBarra"></mat-progress-bar>
     <br>
+    <!-- Formulario de busquedaDinamica -->
     <div class="card" style="height: 140px;">
       <div class="card-body">
         <form class="form-group row" [formGroup]="busquedaDinamica" (submit)="buscarRegistro()">
-
+          <!-- Input correo -->
           <div class="col-5">
             <mat-form-field appearance="fill" style="width: 400px;">
               <mat-label>Correo</mat-label>
               <input matInput placeholder="" formControlName="correo" name="correo" maxlength="30">
             </mat-form-field>
           </div>
-
+          <!-- Select rol -->
           <div class="col-3">
-            <!-- <mat-form-field appearance="fill">
-              <mat-label>Rol</mat-label>
-              <input matInput placeholder="" formControlName="rol" name="rol">
-            </mat-form-field> -->
+           
             <mat-form-field style="width:235px;" appearance="fill">
               <mat-label>Rol</mat-label>
-              <mat-select formControlName="rol" name="rol" >
+              <mat-select formControlName="rol" name="rol">
                 <mat-option [value]="1">Administrador</mat-option>
                 <mat-option [value]="2">Profesor</mat-option>
                 <mat-option [value]="3">Alumno</mat-option>
@@ -29,7 +28,7 @@
             </mat-form-field>
 
           </div>
-
+          <!-- Botón buscar -->
           <div class="col-2">
             <button type="submit" class="btn btn-primary">
               <mat-icon class="col-white">
@@ -37,7 +36,7 @@
               </mat-icon>
             </button>
           </div>
-
+          <!-- Bóton añadir nuevo usuario -->
           <div class="row">
             <div class="col" style="padding-bottom: 30px;">
               <button type="button" mat-mini-fab color="primary" (click)="nuevoRegistro()">
@@ -45,9 +44,16 @@
               </button>
             </div>
 
-            <div class="col" style="padding-bottom: 30px;">
-              <button type="button" class="btn btn-outline-primary" (click)="consultarTodos()">Mostrar
-                Todos</button>
+
+            <!-- Bóton mostrar todos los datos y despliega la tabla -->
+            <div class="col" style="padding-bottom: 30px;" style="text-align: right;">
+              <div class="row">
+                <div class="col-5"></div>
+                <div class="col-2"></div>
+                <div class="col-3"> <button type="button" class="btn btn-outline-primary"(click)="consultarTodos()">Mostrar Todos</button> </div>
+            <!-- Bóton limpia la busqueda de la tabla  -->
+                <div class="col-2"> <button type="button" class="btn btn-outline-warning" (click)="resetTabla()" >Limpiar</button> </div>
+              </div> 
             </div>
 
           </div>
@@ -56,12 +62,12 @@
       </div>
 
     </div>
-
+    <!-- Tabla que muestra los registros de usuarios existentes -->
     <div class="card">
       <div class="card-body">
 
         <div class="mat-elevation-z8">
-          <mat-table #table [dataSource]="dato" matSort>
+          <mat-table #table [dataSource]="dato" matSort >
 
 
             <ng-container matColumnDef="correo">
@@ -81,39 +87,29 @@
               <mat-cell *matCellDef="let dato"> {{dato.rol.rol}} </mat-cell>
             </ng-container>
 
-
-            <ng-container matColumnDef="editar">
-              <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
-              <mat-cell *matCellDef="let row">
-
-                <button type="button" id="btnAccion" class="btn btn-outline-success" (click)="nuevoRegistro(row,row.rol.id)">
+            <!-- Botones de modificar y eliminar registro -->
+            <ng-container matColumnDef="editar-eliminar">
+              <mat-header-cell *matHeaderCellDef id="Accion" > Acciones </mat-header-cell>
+              <mat-cell *matCellDef="let row" >
+                <button type="button" class="btn btn-outline-success"(click)="nuevoRegistro(row,row.rol.id)">
                   <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
                 </button>
-              </mat-cell>
-            </ng-container>
-            <ng-container matColumnDef="eliminar">
-              <mat-header-cell *matHeaderCellDef></mat-header-cell>
-              <mat-cell *matCellDef="let row">
-                <button type="button" id="btnAccion" class="btn btn-outline-danger" (click)="eliminarRegistro(row.id)">
+                <button type="button" class="btn btn-outline-danger" (click)="eliminarRegistro(row.id)">
                   <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
                 </button>
-
               </mat-cell>
             </ng-container>
 
             <mat-header-row *matHeaderRowDef="columnas"></mat-header-row>
             <mat-row *matRowDef="let row; columns: columnas;"></mat-row>
           </mat-table>
-
-          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page">
-          </mat-paginator>
-
+          <!-- Paginador de la tabla -->
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page"></mat-paginator>
 
         </div>
 
       </div>
     </div>
-
 
   </div>
 </section>

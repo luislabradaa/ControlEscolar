@@ -9,6 +9,8 @@ import { DialogComponent } from './dialog/dialog.component';
 import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { LoginRequest } from 'src/app/_model/loginRequest';
+import { CdkAccordionItem } from '@angular/cdk/accordion';
+
 
 @Component({
   selector: 'app-registro',
@@ -25,13 +27,13 @@ export class RegistroComponent implements OnInit {
   isClicked: boolean;
   statusBarra: boolean;
   busquedaDinamica: FormGroup;
+  limpiarTabla: boolean;
 
   columnas = [
     "correo",
     "password",
     "rol",
-    "editar",
-    "eliminar"
+    "editar-eliminar"
   ];
 
   public login: Login = new Login()
@@ -62,6 +64,14 @@ export class RegistroComponent implements OnInit {
       this.statusBarra = false;
     });
 
+  }
+
+  resetTabla(){
+    console.log('Limpiando tabla');
+    this.statusBarra = true;
+    this.limpiarTabla = false;
+    
+    
   }
 
   //Muestra un solo registro en la tabla
@@ -131,9 +141,6 @@ export class RegistroComponent implements OnInit {
     });
   }
 
-  actualizarRegistro() {
-
-  }
   //Eliminar un dato de la tabla
   eliminarRegistro(id: number) {
 

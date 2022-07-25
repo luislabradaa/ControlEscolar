@@ -55,7 +55,7 @@ export class DialogComponent implements OnInit {
       })
 
     }
-    
+
     this.isClicked = true;
   }
 
